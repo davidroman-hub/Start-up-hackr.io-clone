@@ -104,19 +104,35 @@ module.exports =
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/head */ "next/head");
+/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_1__);
 var _jsxFileName = "C:\\Users\\troya\\Desktop\\projects\\node-js-aws\\components\\Layout.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
+
 const Layout = ({
   children
 }) => {
-  const nav = () => __jsx("ul", {
-    className: "nav",
+  const head = () => __jsx("link", {
+    rel: "stylesheet",
+    href: "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css",
+    integrity: "sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm",
+    crossorigin: "anonymous",
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 6,
+      lineNumber: 7,
+      columnNumber: 5
+    }
+  });
+
+  const nav = () => __jsx("ul", {
+    className: "nav nav-tabs bg-dark",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 15,
       columnNumber: 9
     }
   }, __jsx("li", {
@@ -124,16 +140,16 @@ const Layout = ({
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 7,
+      lineNumber: 16,
       columnNumber: 17
     }
   }, __jsx("a", {
-    className: "nav-link",
+    className: "nav-link text-white",
     href: "#",
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 8,
+      lineNumber: 17,
       columnNumber: 21
     }
   }, "Home")), __jsx("li", {
@@ -141,16 +157,16 @@ const Layout = ({
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 11,
+      lineNumber: 20,
       columnNumber: 17
     }
   }, __jsx("a", {
-    className: "nav-link",
+    className: "nav-link text-white",
     href: "#",
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 12,
+      lineNumber: 21,
       columnNumber: 21
     }
   }, "Login")), __jsx("li", {
@@ -158,16 +174,16 @@ const Layout = ({
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 15,
+      lineNumber: 24,
       columnNumber: 17
     }
   }, __jsx("a", {
-    className: "nav-link",
+    className: "nav-link text-white",
     href: "#",
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 16,
+      lineNumber: 25,
       columnNumber: 21
     }
   }, "Register")));
@@ -176,10 +192,18 @@ const Layout = ({
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 21,
+      lineNumber: 30,
       columnNumber: 8
     }
-  }, nav(), children);
+  }, head(), nav(), " ", __jsx("div", {
+    className: "container pt-5 pb-5",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 32,
+      columnNumber: 26
+    }
+  }, children));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Layout);
@@ -231,6 +255,17 @@ const Home = () => {
 
 module.exports = __webpack_require__(/*! C:\Users\troya\Desktop\projects\node-js-aws\pages\index.js */"./pages/index.js");
 
+
+/***/ }),
+
+/***/ "next/head":
+/*!****************************!*\
+  !*** external "next/head" ***!
+  \****************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("next/head");
 
 /***/ }),
 
