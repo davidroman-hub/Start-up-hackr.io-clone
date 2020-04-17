@@ -22,7 +22,7 @@ const head = () => (
                 </li>
                 
                 <li className="nav-item">
-                    <a  className='nav-link text-white' href="#">Registro</a>
+                    <a  className='nav-link text-white' href="#">Registros</a>
                 </li>
         </ul>
     )
