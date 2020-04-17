@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Link from 'next/link'
 
 
 const Layout = ({children}) => {
@@ -7,22 +8,27 @@ const head = () => (
     <link rel="stylesheet" 
          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
-         crossorigin="anonymous"/>
-
-    )
+         crossorigin="anonymous"/>)
 
     const nav = () => (
         <ul className="nav nav-tabs bg-dark">
                 <li className="nav-item">
-                    <a className='nav-link text-white' href="#">Home</a>
+                   <Link href="/">
+                      <a className='nav-link text-white'>Home</a>
+                   </Link>
                 </li>
                 
                 <li className="nav-item">
-                    <a className='nav-link text-white' href="#">Iniciar Sesión</a>
+                   <Link href='/login'>
+                         <a className='nav-link text-white'>Iniciar Sesión</a>
+                   </Link>
                 </li>
                 
                 <li className="nav-item">
-                    <a  className='nav-link text-white' href="#">Registros</a>
+                   <Link href='/register'>
+                        <a className='nav-link text-white'>Registros</a>
+                   </Link>
+                   
                 </li>
         </ul>
     )
