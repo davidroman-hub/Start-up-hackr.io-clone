@@ -4,9 +4,14 @@
   
 //   export default Home
   
+import Layout from '../components/Layout'
 
 const Home  = () => {
-    return (<div>Hola next!</div>)
+    return (
+    
+    <Layout>hola next</Layout>
+    
+    )
 }
 
 export default Home
