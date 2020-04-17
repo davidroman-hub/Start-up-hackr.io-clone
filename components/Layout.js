@@ -18,11 +18,11 @@ const head = () => (
                 </li>
                 
                 <li className="nav-item">
-                    <a className='nav-link text-white' href="#">Login</a>
+                    <a className='nav-link text-white' href="#">Iniciar Sesión</a>
                 </li>
                 
                 <li className="nav-item">
-                    <a  className='nav-link text-white' href="#">Register</a>
+                    <a  className='nav-link text-white' href="#">Registro</a>
                 </li>
         </ul>
     )
