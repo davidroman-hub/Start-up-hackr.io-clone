@@ -27,14 +27,15 @@ const handleChange = name => e => {
     setState({...state,[name]: e.target.value,error:'', success:'', buttonText:'Registro' })
 }
 
-const handleSubmit = e=> {
+const handleSubmit = async e => {
     e.preventDefault();
-   //console.table({name, email, password})
-   setState({...state,buttonText:'Registrando'})
-    axios.post(`http://localhost:8000/api/register`,{
-        name, email, password
-    })
-    .then(response => {
+    setState({...state,buttonText:'Registro'});
+    try {
+       const response = await axios.post(`http://localhost:8000/api/register`,{
+            name, 
+            email, 
+            password
+        })
         console.log(response)
         setState({
             ...state,
@@ -44,12 +45,37 @@ const handleSubmit = e=> {
             button:'Enviando',
             success:response.data.message
         })
-    })
-    .catch(error => {
+
+    } catch (error) {
         console.log(error)
         setState({...state,buttonText:'Registro', error:error.response.data.error})
-    })
-};
+    }
+}
+
+
+// const handleSubmit = e => {
+//     e.preventDefault();
+//    //console.table({name, email, password})
+//    setState({...state,buttonText:'Registrando'})
+//     axios.post(`http://localhost:8000/api/register`,{
+//         name, email, password
+//     })
+//     .then(response => {
+//         console.log(response)
+//         setState({
+//             ...state,
+//             name:'',
+//             email:'',
+//             password:'',
+//             button:'Enviando',
+//             success:response.data.message
+//         })
+//     })
+//     .catch(error => {
+//         console.log(error)
+//         setState({...state,buttonText:'Registro', error:error.response.data.error})
+//     })
+// };
 
 
     
