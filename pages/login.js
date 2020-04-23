@@ -1,11 +1,12 @@
 
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import Layout from '../components/Layout'
 import axios from 'axios'
 import {showSuccessMessage, showErrorMessage} from '../helpers/alerts'
 import {API} from '../config'
 import Link from 'next/link'
 import Router from 'next/router'
+import {authenticate, isAuth} from '../helpers/authHelpers'
 
 
 const Login  = () => {
@@ -17,6 +18,10 @@ const Login  = () => {
         success:'',
         buttonText: 'Iniciar Sesión',        
     })
+
+useEffect(()=>{
+    isAuth() && Router.push('/') /// if is auth the user cant return to login again
+},[])
 
 
     // destructure
@@ -37,8 +42,11 @@ const handleSubmit = async e => {
             email, 
             password
         })
-        console.log(response)
-    
+        console.log(response);
+            authenticate( response, () => {
+      // return Router.push('/')
+      // isAuth() && isAuth().role === 'admin' ? history.push('/admin/dashboard') : history.push('/user/dashboard')
+         })
     } catch (error) {
         console.log(error)
         setState({...state,buttonText:'Accediendo', error:error.response.data.error})
@@ -72,6 +80,7 @@ const handleSubmit = async e => {
         <div className="text-center col-md-6 offset-md-3">
             <h2>Inicia Sesión</h2>
             <br/>
+            {/* {JSON.stringify(isAuth())} */}
             {success && showSuccessMessage(success)}
             {error && showErrorMessage(error)}
             <br/>
