@@ -45,7 +45,7 @@ const handleSubmit = async e => {
         console.log(response);
             authenticate( response, () => {
       // return Router.push('/')
-      // isAuth() && isAuth().role === 'admin' ? history.push('/admin/dashboard') : history.push('/user/dashboard')
+       isAuth() && isAuth().role === 'admin' ? Router.push('/admin') : Router.push('/user')
          })
     } catch (error) {
         console.log(error)
