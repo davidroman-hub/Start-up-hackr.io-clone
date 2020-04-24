@@ -18,7 +18,7 @@ const Register  = () => {
     })
 
 useEffect(()=>{
-    isAuth && Router.push('/')
+    isAuth() && Router.push('/')
 },[])
 
 

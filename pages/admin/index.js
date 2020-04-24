@@ -1,3 +1,12 @@
-const Admin = () => <h1>Admin Dash </h1> 
+  
+import Layout from '../../components/Layout'
+
+const Admin  = () => {
+    return (
+    
+    <Layout>hola Admin</Layout>
+    
+    )
+}
 
 export default Admin

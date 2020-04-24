@@ -1,3 +1,12 @@
-const User = () => <h1>User Dash </h1> 
+  
+import Layout from '../../components/Layout'
+
+const User  = () => {
+    return (
+    
+    <Layout>hola User</Layout>
+    
+    )
+}
 
 export default User

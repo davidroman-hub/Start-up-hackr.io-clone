@@ -4,7 +4,7 @@ import Layout from '../components/Layout'
 const Home  = () => {
     return (
     
-    <Layout>hola next</Layout>
+    <Layout>hola Home</Layout>
     
     )
 }
