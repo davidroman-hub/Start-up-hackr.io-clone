@@ -56,7 +56,7 @@ const head = () => (
                   {
                      isAuth() && isAuth().role == 'admin' && (
                      <React.Fragment>
-                        <li className="nav-item ml-auto">
+                        <li className="nav-item ">
                         <Link href='/admin'>
                              <a className='nav-link text-white'>Admin</a>
                         </Link>
@@ -71,7 +71,7 @@ const head = () => (
                   {
                      isAuth() && isAuth().role == 'subscriber' && (
                         <React.Fragment>
-                        <li className="nav-item ml-auto">
+                        <li className="nav-item">
                         <Link href='/user'>
                               <a className='nav-link text-white'>{isAuth().name}</a>
                         </Link>
