@@ -24,9 +24,9 @@ const withUser = Page => {
                     }
                 )
                 user = response.data
-            } catch(err) {
+            } catch(error) {
                 if(error.response.status == 401){
-                    user : null
+                    user = null
                 }
             }
         }
@@ -34,7 +34,8 @@ const withUser = Page => {
             // redirect 
             context.res.writeHead(302 ,{
                 Location: '/'
-            })
+            });
+            context.res.end()
         } else { 
             return {
                 ...(Page.getInitialProps ? await Page.getInitialProps(context) : {}),

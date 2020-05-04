@@ -63,6 +63,7 @@ import {getCookie} from '../../helpers/authHelpers'
 //export default User
 
 import withUser from '../withUser'
+import withAdmin from '../withAdmin'
 
 const User  = ({user, token}) => <Layout>{JSON.stringify(user,token)}</Layout>
 
