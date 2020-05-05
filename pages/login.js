@@ -65,7 +65,7 @@ const handleSubmit = async e => {
                 <input value={password} onChange={handleChange('password')} type="password" className="form-control" placeholder="Tu Contraseña"/>
             </div>
             <div className="form-group">
-    <button className="btn btn-outline-warning">{buttonText}</button>
+                <button className="btn btn-outline-warning">{buttonText}</button>
             </div>
         </form>
     )
@@ -87,6 +87,9 @@ const handleSubmit = async e => {
             {loginForm()}
             <hr/>
             {/* {JSON.stringify({state})} */}
+            <Link href='/auth/password/forgot'>
+                <a className='text-danger float-right'>Olvidaste tu contraseña??</a>
+            </Link>
 
         </div>
 
