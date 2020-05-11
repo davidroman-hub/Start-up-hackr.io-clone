@@ -1,9 +1,10 @@
-import Layout from '../../../components/Layout'
-import withAdmin from '../../withAdmin'
-import {useState,useEffect} from 'react'
-import axios from 'axios'
-import {API} from '../../../config'
-import {showErrorMessage,showSuccessMessage} from '../../../helpers/alerts'
+import Layout from '../../../components/Layout';
+import withAdmin from '../../withAdmin';
+import {useState,useEffect} from 'react';
+import axios from 'axios';
+import Resizer from 'react-image-file-resizer';
+import {API} from '../../../config';
+import {showErrorMessage,showSuccessMessage} from '../../../helpers/alerts';
 
 
 const Create = ({user,token}) => {
@@ -13,42 +14,83 @@ const Create = ({user,token}) => {
         content:'',
         error:'',
         success:'',
-        formData:process.browser && new FormData(),
+        //formData:process.browser && new FormData(),
         buttonText:'Crear',
-        imageUploadText:'Cargar imagen',
+        //imageUploadText:'Cargar imagen',
+        image:''
     })
 
-    const {name, content, error, success, formData, buttonText, imageUploadText} = state
+    // const {name,
+    //      content,
+    //       error, 
+    //       success, 
+    //       formData, 
+    //       buttonText, 
+    //       imageUploadText
+    //     } = state
 
+    const [imageUploadButtonName, setImageUploadName] = useState('Seleccionar imagen')
+
+    const { name, content, success, error, image, buttonText, imageUploadText } = state;
+   
     const handleChange = name => e => {
-        const value = name === 'image' ? e.target.files[0] : e.target.value;
-        const imageName = name === 'image' ? event.target.files[0].name : 'Cargar imagen' // for put the photo name
-        formData.set(name, value) ;
-        setState({...state, [name]: value, error:'', success:'', imageUploadText:imageName })
+        
+        setState({...state, [name]: e.target.value, error:'', success:''})
     };
+
+    // const handleImage = event => {
+    //     const image = event.target.files[0];
+    //     console.log(image);
+    // }
+    const handleImage = event => {
+        let fileInput = false;
+        if (event.target.files[0]) {
+            fileInput = true;
+        }
+
+        setImageUploadName(event.target.files[0].name)
+
+        if (fileInput) {
+            Resizer.imageFileResizer(
+                event.target.files[0],
+                300,
+                300,
+                'JPEG',
+                100,
+                0,
+                uri => {
+                    // console.log(uri);
+                    setState({ ...state, image: uri, success: '', error: '' });
+                },
+                'base64'
+            );
+        }
+    };
+
 
     const handleSubmit = async e => {
         e.preventDefault()
         setState({...state, buttonText:'Creando..'})
         //console.log(...formData)
         try {
-            const response = await axios.post(`${API}/category`, formData,{
+            const response = await axios.post(`${API}/category`, {name,content,image},{
                 headers:{
                     Authorization:`Bearer ${token}`
                 }
             })
             console.log('Crear categoria Response', response)
+            setImageUploadName('Seleccionar imagen')
             setState({...state, 
             name:'',
             content:'', 
             formData:'', 
             buttonText:'Creado!', 
             imageUploadText:'Cargar imagen',
-            success:`${response.data.name} ha sido creado! Refresca la pagina para crear otra categoria.`
+            success:`${response.data.name} ha sido creado!`
         })
         } catch(error) {
             console.log('Fallo al crear categoria!', error)
-            setState({...state, name:'', formData:'', buttonText:'Crear', error: error.response.data.error})
+            setState({...state, buttonText:'Crear', error: error.response.data.error})
         }
     }
 
@@ -68,8 +110,8 @@ const Create = ({user,token}) => {
             </div>
             <div className="form-group">
                 <label className="btn btn-outline-secondary ">
-                    {imageUploadText}
-                <input onChange={handleChange('image')} accept="image/*" type="file" className="form-control" hidden/>
+                    {imageUploadButtonName}
+                <input onChange={handleImage} accept="image/*" type="file" className="form-control" hidden/>
                 </label>
             </div>
             <div>
