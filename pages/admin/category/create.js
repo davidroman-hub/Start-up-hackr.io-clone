@@ -1,17 +1,18 @@
+import dynamic from 'next/dynamic'
 import Layout from '../../../components/Layout';
 import withAdmin from '../../withAdmin';
 import {useState,useEffect} from 'react';
 import axios from 'axios';
 import Resizer from 'react-image-file-resizer';
+const ReactQuill = dynamic(() => import('react-quill'), {ssr:false}) // dynamic export
 import {API} from '../../../config';
 import {showErrorMessage,showSuccessMessage} from '../../../helpers/alerts';
-
-
+import 'react-quill/dist/quill.bubble.css'
+//import 'react-quill/dist/quill.snow.css'
 const Create = ({user,token}) => {
 
     const [state, setState] = useState({
         name: '',
-        content:'',
         error:'',
         success:'',
         //formData:process.browser && new FormData(),
@@ -29,10 +30,22 @@ const Create = ({user,token}) => {
     //       imageUploadText
     //     } = state
 
+
+    const [content, setContent] = useState('')
     const [imageUploadButtonName, setImageUploadName] = useState('Seleccionar imagen')
 
-    const { name, content, success, error, image, buttonText, imageUploadText } = state;
+    const { name,success,error, image, buttonText, imageUploadText } = state;
    
+
+    const handleContent = e => {
+        console.log(e)
+        setContent(e)
+        setState({...state, success: '', error:''})
+    }
+
+
+
+
     const handleChange = name => e => {
         
         setState({...state, [name]: e.target.value, error:'', success:''})
@@ -106,7 +119,17 @@ const Create = ({user,token}) => {
                 <label className="text-muted">
                     Contenido
                 </label>
-                <textarea onChange={handleChange('content')}  value={content} className="form-control" required/>
+               {/* <textarea onChange={handleChange('content')}  value={content} className="form-control" required/> */}
+                <ReactQuill
+                value={content}
+                onChange={handleContent}
+                placeholder="Escribe algo"
+                className="pb-5 mb-3"
+                theme='bubble'
+                //theme='snow'
+                style={{border: '1px solid #666'}}
+                required
+                />
             </div>
             <div className="form-group">
                 <label className="btn btn-outline-secondary ">
