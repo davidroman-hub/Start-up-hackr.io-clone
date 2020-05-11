@@ -44,7 +44,7 @@ const Create = ({user,token}) => {
             formData:'', 
             buttonText:'Creado!', 
             imageUploadText:'Cargar imagen',
-            success:`${response.data.name} ha sido creado!`
+            success:`${response.data.name} ha sido creado! Refresca la pagina para crear otra categoria.`
         })
         } catch(error) {
             console.log('Fallo al crear categoria!', error)
